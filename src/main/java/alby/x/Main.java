@@ -2,18 +2,18 @@ package alby.x;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
     private static final String URL = "jdbc:mysql://db4free.net:3306/libreriakhalix";
-    private static final String USER = "khalix@%";
+    private static final String USER = "khalix";
     private static final String PASSWORD = "Alby_1994";
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         boolean c = true;
+        int veri = 0;
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
             while (c) {
@@ -26,16 +26,16 @@ public class Main {
 
                 switch (scan.nextLine()) {
                     case "1":
-                        System.out.println("Inserisci il nome del libro:");
-                        String nomeLibro = scan.nextLine();
-                        inserisciLibro(conn, nomeLibro);
-                        System.out.println("Libro aggiunto: " + nomeLibro);
+                        Inserimento.ins(scan,conn);
+                        System.out.println("Libro aggiunto!");
                         break;
                     case "2":
-                        // Logica per modificare un libro
+                        EsecutoreSuDB.modificaLibro(conn,scan);
+                        System.out.println("Dati modificati con successo");
                         break;
                     case "3":
-                        // Logica per eliminare un libro
+                        System.out.println("Inserisci il nome del libro da eliminare:");
+                        EsecutoreSuDB.eliminalibro(conn, scan);
                         break;
                     default:
                         c = false;
@@ -47,11 +47,4 @@ public class Main {
         }
     }
 
-    private static void inserisciLibro(Connection conn, String nomeLibro) throws SQLException {
-        String sql = "INSERT INTO Libreria (`nome libro`, quantità, `in o out`) VALUES (`Nome libro`, Quantità, `IN o OUT`)";
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, nomeLibro);
-            pstmt.executeUpdate();
-        }
-    }
 }
