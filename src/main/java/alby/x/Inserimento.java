@@ -14,6 +14,7 @@ public class Inserimento {
             int ver = EsecutoreSuDB.verifica(conn, ins);
             if (ver == 1) {
                 m = false;
+                System.out.println("Un libro con lo stesso nome esiste già nel database.");
             }else{
                 m = true;
             }

@@ -30,7 +30,6 @@ public class Main {
                         break;
                     case "2":
                         EsecutoreSuDB.modificaLibro(conn,scan);
-                        System.out.println("Dati modificati con successo");
                         break;
                     case "3":
                         System.out.println("Inserisci il nome del libro da eliminare:");

@@ -24,7 +24,7 @@ public class EsecutoreSuDB {
             pstmtVerifica.setString(1, nomeLibro);
             ResultSet rs = pstmtVerifica.executeQuery();
             if (rs.next() && rs.getInt(1) > 0) {
-                System.out.println("Un libro con lo stesso nome esiste già nel database.");
+
                 ver++;
                 return ver;
             }else {
@@ -47,22 +47,22 @@ public class EsecutoreSuDB {
         String nomeLibro = scan.nextLine();
         int verifica = verifica(conn, nomeLibro);
         if (verifica > 0) {
-            System.out.println("Quale campo vuoi modificare? (Nome libro/Quantità/IN o OUT)\n " +
+            System.out.println("Quale campo vuoi modificare? (Nome libro/Quantità/IN o OUT)\n" +
                     "digitare esattamente le parole scritte tra parentesi \n" +
                     "ESEMPIO: nel campo scrivere 'IN o OUT'");
             String campoDaModificare = scan.nextLine();
-            if (!campoDaModificare.equals("IN o OUT") && !campoDaModificare.equals("Quantità") && !campoDaModificare.equals("Nome libro")){
+            if (!campoDaModificare.equals("IN o OUT") && !campoDaModificare.equals("Quantità") && !campoDaModificare.equals("Nome libro")) {
                 System.out.println("Non esiste la colonna\n" +
                         "Digita una delle colonne tra: \n" +
                         "Nome libro\n" +
                         "Quantità\n" +
                         "IN o OUT");
-                return;
+                modificaLibro(conn, scan);
             }
             System.out.println("Inserisci il nuovo valore:");
             String nuovoValore = scan.nextLine();
 
-            String sql = "UPDATE Libreria SET " + campoDaModificare + " = ? WHERE `nome libro` = ?";
+            String sql = "UPDATE Libreria SET `" + campoDaModificare + "` = ? WHERE `Nome libro` = ?";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, nuovoValore);
                 pstmt.setString(2, nomeLibro);
@@ -77,5 +77,4 @@ public class EsecutoreSuDB {
             System.out.println("Libro non trovato nel database.");
         }
     }
-
 }
