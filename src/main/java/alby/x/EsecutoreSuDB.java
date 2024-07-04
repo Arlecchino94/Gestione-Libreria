@@ -61,6 +61,15 @@ public class EsecutoreSuDB {
             }
             System.out.println("Inserisci il nuovo valore:");
             String nuovoValore = scan.nextLine();
+            if (!nuovoValore.equals("IN") && !nuovoValore.equals("OUT") && !nuovoValore.equals("Quantità") && !nuovoValore.equals("Nome libro")){
+                System.out.println("Hai inserito un valore non valido \n" +
+                                "Inserisci uno dei seguenti valori:\n" +
+                                "Nome libro\n" +
+                                "Quantità\n" +
+                                "IN\n" +
+                                "OUT");
+                modificaLibro(conn, scan);
+            }
 
             String sql = "UPDATE Libreria SET `" + campoDaModificare + "` = ? WHERE `Nome libro` = ?";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
