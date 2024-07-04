@@ -7,8 +7,7 @@ import java.util.Scanner;
 
 public class Eliminazione {
     public static void canc(Connection conn, Scanner scan){
-        // Assumi che 'conn' sia la tua connessione al database attiva
-        String nomeLibro = scan.nextLine(); // Sostituisci con il nome del libro da cancellare
+        String nomeLibro = scan.nextLine();
         String sql = "DELETE FROM Libreria WHERE `Nome libro` = ?";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {

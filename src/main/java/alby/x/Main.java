@@ -13,7 +13,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         boolean c = true;
-        int veri = 0;
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
             while (c) {
