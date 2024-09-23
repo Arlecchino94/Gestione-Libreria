@@ -12,10 +12,10 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        boolean c = true;
+        boolean cicloProgramma = true;
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            while (c) {
+            while (cicloProgramma) {
                 System.out.println("Ciao, sono il gestionale della biblioteca \n" +
                         "Cosa vuoi fare? \n" +
                         "Seleziona il numero corrispondente alla funzione: \n" +
@@ -36,7 +36,7 @@ public class Main {
                         EsecutoreSuDB.eliminalibro(conn, scan);
                         break;
                     default:
-                        c = false;
+                        cicloProgramma = false;
                         break;
                 }
             }
